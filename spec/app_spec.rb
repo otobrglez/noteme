@@ -2,7 +2,6 @@ require "spec_helper"
 
 describe App do
   include Rack::Test::Methods
-
   before { Note.delete_all } #TODO: Add database_cleaner someday
 
   let(:app) { App }
@@ -10,6 +9,16 @@ describe App do
   context "GET /" do
     subject { get '/' }
     its(:status){ should eq 200 }
+  end
+
+  context "CORS headers" do
+    subject do
+      get '/'
+      last_response.headers
+    end
+
+    it { should have_key("Access-Control-Allow-Origin") }
+    it { subject["Access-Control-Allow-Origin"].should eq "*"}
   end
 
   context "notes" do
