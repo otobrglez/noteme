@@ -53,7 +53,7 @@ end
 # Database setup
 ActiveRecord::Base.establish_connection('sqlite3:///db/dev-base.sqlite') if ENV["RACK_ENV"] == "development"
 ActiveRecord::Base.establish_connection('sqlite3:///db/test-base.sqlite') if ENV["RACK_ENV"] == "test"
-#TODO: Production
+ActiveRecord::Base.establish_connection(ENV["DATABASE_URL"]) if ENV["RACK_ENV"] == "production"
 
 # Logger setup.
 logger = Logger.new(STDOUT)
