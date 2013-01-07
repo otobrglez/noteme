@@ -4,6 +4,7 @@ require 'bundler/setup'
 require 'active_record'
 require 'json'
 require 'grape'
+require 'pp'
 
 ENV["RACK_ENV"] ||= "development"
 
@@ -15,7 +16,7 @@ end
 
 class App < Grape::API
   format :json
-  before do header "Access-Control-Allow-Origin", request.env['HTTP_ORIGIN'] || "*"; end
+  before do header "Access-Control-Allow-Origin", "http://fiddle.jshell.net"; end
 
   get '/' do
     content_type "text/html"
@@ -29,6 +30,12 @@ POST    /notes        - Create new note
 PUT     /notes/:id    - Update note with new attributes
 DELETE  /notes/:id    - Delete single note
     </pre>"
+  end
+
+  get '/origin' do
+    content_type "text/html"
+    pp request
+    "HTTP_ORIGIN: #{request.env['HTTP_ORIGIN']}"
   end
 
   rescue_from ActiveRecord::RecordInvalid do |invalid|
