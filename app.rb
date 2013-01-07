@@ -15,7 +15,7 @@ end
 
 class App < Grape::API
   format :json
-  before do header "Access-Control-Allow-Origin", "*"; end
+  before do header "Access-Control-Allow-Origin", request.env['HTTP_ORIGIN'] || "*"; end
 
   get '/' do
     content_type "text/html"
