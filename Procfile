@@ -1,2 +1,2 @@
-web: ruby app.rb -p $PORT
+web: rackup -s thin -p $PORT
 
