@@ -3,6 +3,7 @@ source :rubygems
 gem 'rake'
 gem 'foreman'
 gem 'heroku'
+gem 'sinatra-activerecord'
 gem 'activerecord'
 gem 'thin'
 gem 'grape'
