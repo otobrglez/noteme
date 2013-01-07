@@ -16,7 +16,13 @@ end
 
 class App < Grape::API
   format :json
-  before do header "Access-Control-Allow-Origin", "http://fiddle.jshell.net"; end
+  before do
+    header "Access-Control-Allow-Origin", "*"
+    header 'Access-Control-Allow-Credentials', "false"
+    header 'Access-Control-Allow-Origin', request.env['HTTP_ORIGIN']
+    header 'Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS'
+    header 'Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  end
 
   get '/' do
     content_type "text/html"
