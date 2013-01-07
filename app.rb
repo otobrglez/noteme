@@ -16,14 +16,6 @@ class Note < ActiveRecord::Base
 end
 
 class App < Grape::API
-  use Rack::Cors do
-      allow do
-        origins '*'
-        resource '/*', :headers => :any, :methods => [:get, :post, :options, :put]
-        resource '/notes/*', :headers => :any, :methods => [:get, :post, :options, :put]
-      end
-  end
-
 
   format :json
   # before do
