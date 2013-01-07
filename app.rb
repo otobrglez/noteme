@@ -1,8 +1,8 @@
 # By Oto Brglez - <oto.brglez@dlabs.si>
 
 require 'bundler/setup'
+require 'active_record'
 require 'json'
-require 'sinatra/activerecord'
 require 'grape'
 
 ENV["RACK_ENV"] ||= "development"

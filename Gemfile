@@ -1,15 +1,18 @@
 source :rubygems
 
 gem 'rake'
-gem 'sinatra'
-gem 'sinatra-contrib'
 gem 'foreman'
-gem 'af'
-gem 'sinatra-activerecord'
+gem 'heroku'
+gem 'activerecord'
 gem 'thin'
 gem 'grape'
 
-gem 'sqlite3'
+group :production do
+  gem 'pg'
+end
 
-gem 'rspec'
-gem 'rack-test'
+group :test, :development do
+  gem 'sqlite3'
+  gem 'rspec'
+  gem 'rack-test'
+end
