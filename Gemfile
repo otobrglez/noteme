@@ -7,6 +7,7 @@ gem 'sinatra-activerecord'
 gem 'activerecord'
 gem 'thin'
 gem 'grape'
+gem 'rack-cors'
 
 group :production do
   gem 'pg'

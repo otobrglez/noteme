@@ -5,6 +5,7 @@ require 'active_record'
 require 'json'
 require 'grape'
 require 'pp'
+require 'rack/cors'
 
 ENV["RACK_ENV"] ||= "development"
 
@@ -15,14 +16,23 @@ class Note < ActiveRecord::Base
 end
 
 class App < Grape::API
-  format :json
-  before do
-    header "Access-Control-Allow-Origin", "*"
-    header 'Access-Control-Allow-Credentials', "false"
-    header 'Access-Control-Allow-Origin', request.env['HTTP_ORIGIN']
-    header 'Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS'
-    header 'Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  use Rack::Cors do
+      allow do
+        origins '*'
+        resource '/*', :headers => :any, :methods => [:get, :post, :options, :put]
+        resource '/notes/*', :headers => :any, :methods => [:get, :post, :options, :put]
+      end
   end
+
+
+  format :json
+  # before do
+  #   header "Access-Control-Allow-Origin", "*"
+  #   header 'Access-Control-Allow-Credentials', "false"
+  #   header 'Access-Control-Allow-Origin', request.env['HTTP_ORIGIN']
+  #   header 'Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS'
+  #   header 'Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  # end
 
   get '/' do
     content_type "text/html"
