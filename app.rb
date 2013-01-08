@@ -24,6 +24,7 @@ class App < Grape::APIcon
     "<pre>This is noteme by Oto Brglez.
 
 GET     /notes        - List all notes
+GET     /notes/:id    - Get single note
 POST    /notes        - Create new note
                         Structure of note
                           content [text]

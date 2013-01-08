@@ -11,15 +11,6 @@ describe App do
     its(:status){ should eq 200 }
   end
 
-  #context "CORS headers" do
-  #  subject do
-  #    get '/'
-  #    last_response.headers
-  #  end
-  #  it { should have_key("Access-Control-Allow-Origin") }
-  #  it { subject["Access-Control-Allow-Origin"].should eq "*"}
-  #end
-
   context "notes" do
     context "GET /notes" do
       before do
