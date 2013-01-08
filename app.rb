@@ -15,7 +15,7 @@ class Note < ActiveRecord::Base
   validates_inclusion_of :completed, :in => [0,1]
 end
 
-class App < Grape::APIcon
+class App < Grape::API
 
   format :json
 
